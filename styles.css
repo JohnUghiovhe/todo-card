@@ -1,0 +1,247 @@
+:root {
+  --bg-0: #f8f6f2;
+  --bg-1: #efe8dc;
+  --card: #fffefb;
+  --text: #1e1f1d;
+  --muted: #5e625a;
+  --line: #ded7ca;
+  --accent: #2364aa;
+  --accent-soft: #dceafd;
+  --danger: #b42318;
+  --danger-soft: #fce7e5;
+  --success: #0f766e;
+  --success-soft: #d7f8f2;
+  --ring: #111827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(35, 100, 170, 0.14), transparent 35%),
+    radial-gradient(circle at 85% 20%, rgba(180, 35, 24, 0.14), transparent 33%),
+    linear-gradient(160deg, var(--bg-0), var(--bg-1));
+}
+
+.page-shell {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  padding: 1rem;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.todo-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 1.2rem;
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.73rem;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 0.35rem 0 0;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.22;
+  text-wrap: balance;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.priority {
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  border: 1px solid;
+}
+
+.priority-high {
+  background: var(--danger-soft);
+  border-color: #f8b4ae;
+  color: var(--danger);
+}
+
+.description {
+  color: #2f322d;
+  margin: 1rem 0;
+  line-height: 1.48;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.meta-item {
+  background: #f9f7f2;
+  border: 1px solid #e8e1d4;
+  border-radius: 12px;
+  padding: 0.7rem 0.8rem;
+}
+
+.meta-label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+}
+
+.status-badge {
+  background: var(--accent-soft);
+  color: #1e4979;
+  border: 1px solid #b7d5f8;
+  border-radius: 999px;
+  padding: 0.2rem 0.56rem;
+  display: inline-block;
+  font-weight: 700;
+}
+
+.status-done {
+  background: var(--success-soft);
+  border-color: #8fe3d8;
+  color: var(--success);
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.toggle-row input {
+  inline-size: 1rem;
+  block-size: 1rem;
+  accent-color: var(--accent);
+  cursor: pointer;
+  transition: outline 0.15s ease;
+}
+
+.toggle-row input:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.toggle-row label {
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.48rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tag-chip {
+  border: 1px solid #d4d8d2;
+  background: #f7faf6;
+  color: #29432f;
+  padding: 0.3rem 0.58rem;
+  border-radius: 999px;
+  font-size: 0.79rem;
+  font-weight: 700;
+}
+
+.actions {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 0.55rem;
+}
+
+button {
+  border: 1px solid #1f2937;
+  background: #ffffff;
+  color: #101828;
+  border-radius: 10px;
+  padding: 0.62rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, outline 0.15s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+#todo-delete-button {
+  border-color: #8e1d14;
+  color: #8e1d14;
+}
+
+:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.is-complete h2 {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+
+@media (min-width: 768px) {
+  .todo-card {
+    padding: 1.4rem;
+  }
+
+  .meta-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .meta-grid .meta-item:last-child {
+    grid-column: span 2;
+  }
+}
