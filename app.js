@@ -32,6 +32,7 @@ const overdueIndicator = document.querySelector('[data-testid="test-todo-overdue
 const dueDateEl = document.querySelector('[data-testid="test-todo-due-date"]');
 const checkbox = document.querySelector('[data-testid="test-todo-complete-toggle"]');
 const statusSelect = document.querySelector('[data-testid="test-todo-status-control"]');
+const statusBadge = document.querySelector('[data-testid="test-todo-status"]');
 const expandToggle = document.querySelector('[data-testid="test-todo-expand-toggle"]');
 const editButton = document.querySelector('[data-testid="test-todo-edit-button"]');
 const deleteButton = document.querySelector('[data-testid="test-todo-delete-button"]');
@@ -138,19 +139,25 @@ function syncPriorityUI() {
 function syncStatusUI() {
   checkbox.checked = state.status === "Done";
   statusSelect.value = state.status;
+  statusBadge.textContent = state.status;
 
   const statusClasses = ["status-pending", "status-in-progress", "status-done"];
   statusClasses.forEach((className) => statusSelect.classList.remove(className));
+  statusClasses.forEach((className) => statusBadge.classList.remove(className));
 
   if (state.status === "Done") {
     statusSelect.classList.add("status-done");
+    statusBadge.classList.add("status-done");
   } else if (state.status === "In Progress") {
     statusSelect.classList.add("status-in-progress");
+    statusBadge.classList.add("status-in-progress");
   } else {
     statusSelect.classList.add("status-pending");
+    statusBadge.classList.add("status-pending");
   }
 
   statusSelect.setAttribute("aria-label", `Task status, ${state.status}`);
+  statusBadge.setAttribute("aria-label", `${state.status} status`);
 
   title.classList.toggle("is-complete", state.status === "Done");
   descriptionPreview.classList.toggle("is-complete", state.status === "Done");

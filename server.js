@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const rootDir = __dirname;
-const port = Number(process.env.PORT) || 3000;
+const port = Number(process.env.PORT) || 3005;
 
 const contentTypes = {
   '.html': 'text/html; charset=utf-8',
