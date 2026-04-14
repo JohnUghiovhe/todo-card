@@ -16,9 +16,12 @@
     <main class="page-shell">
       <article class="todo-card" data-testid="test-todo-card" aria-label="Todo item card">
         <header class="card-header">
-          <div>
+          <div class="title-wrap">
             <p class="eyebrow">Today</p>
-            <h2 data-testid="test-todo-title" id="todo-title">Ship onboarding card redesign</h2>
+            <div class="title-row">
+              <span data-testid="test-todo-priority-indicator" class="priority-indicator" aria-hidden="true"></span>
+              <h2 data-testid="test-todo-title" id="todo-title">Ship onboarding card redesign</h2>
+            </div>
           </div>
           <span
             class="priority priority-high"
@@ -29,10 +32,57 @@
           </span>
         </header>
 
-        <p data-testid="test-todo-description" class="description">
+        <div class="status-row">
+          <div class="meta-item status-item">
+            <span class="meta-label">Status</span>
+            <label for="todo-status-control" class="status-control-label">Task status</label>
+            <select
+              data-testid="test-todo-status-control"
+              id="todo-status-control"
+            >
+              <option value="Pending">Pending</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Done">Done</option>
+            </select>
+          </div>
+
+          <div class="meta-item status-display-item">
+            <span class="meta-label">Current status</span>
+            <span data-testid="test-todo-status" id="todo-status" class="status-badge" aria-label="Pending status">
+              Pending
+            </span>
+          </div>
+        </div>
+
+        <p data-testid="test-todo-description" class="description" id="todo-description-preview">
           Finalize typography scale, spacing tokens, and responsive behavior for the first-run
           experience card.
         </p>
+
+        <button
+          type="button"
+          class="expand-toggle"
+          data-testid="test-todo-expand-toggle"
+          id="todo-expand-toggle"
+          aria-expanded="false"
+          aria-controls="todo-collapsible-section"
+        >
+          Expand
+        </button>
+
+        <section
+          data-testid="test-todo-collapsible-section"
+          id="todo-collapsible-section"
+          class="collapsible-section is-collapsed"
+          hidden
+        >
+          <p class="description long-description collapsible-content" id="todo-description-full">
+            Finalize typography scale, spacing tokens, and responsive behavior for the first-run
+            experience card. Add interaction polish, ensure the layout is resilient at small and
+            large viewports, and keep the component accessible for keyboard and screen-reader
+            users.
+          </p>
+        </section>
 
         <section class="meta-grid" aria-label="Task metadata">
           <div class="meta-item">
@@ -51,12 +101,8 @@
             <time data-testid="test-todo-time-remaining" id="todo-time-remaining" aria-live="polite">
               Loading...
             </time>
-          </div>
-
-          <div class="meta-item">
-            <span class="meta-label">Status</span>
-            <span data-testid="test-todo-status" id="todo-status" class="status-badge" aria-label="Pending status">
-              Pending
+            <span data-testid="test-todo-overdue-indicator" id="todo-overdue-indicator" class="overdue-indicator" hidden>
+              Overdue
             </span>
           </div>
         </section>
@@ -83,6 +129,39 @@
           <button type="button" data-testid="test-todo-edit-button" id="todo-edit-button">Edit</button>
           <button type="button" data-testid="test-todo-delete-button" id="todo-delete-button">Delete</button>
         </footer>
+
+        <form data-testid="test-todo-edit-form" id="todo-edit-form" class="edit-form" hidden>
+          <div class="form-grid">
+            <div class="field">
+              <label for="todo-edit-title">Title</label>
+              <input data-testid="test-todo-edit-title-input" id="todo-edit-title" type="text" />
+            </div>
+
+            <div class="field field-wide">
+              <label for="todo-edit-description">Description</label>
+              <textarea data-testid="test-todo-edit-description-input" id="todo-edit-description" rows="5"></textarea>
+            </div>
+
+            <div class="field">
+              <label for="todo-edit-priority">Priority</label>
+              <select data-testid="test-todo-edit-priority-select" id="todo-edit-priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="todo-edit-due-date">Due date</label>
+              <input data-testid="test-todo-edit-due-date-input" id="todo-edit-due-date" type="datetime-local" />
+            </div>
+          </div>
+
+          <div class="edit-actions">
+            <button type="submit" data-testid="test-todo-save-button">Save</button>
+            <button type="button" data-testid="test-todo-cancel-button" id="todo-cancel-button">Cancel</button>
+          </div>
+        </form>
       </article>
     </main>
 
